@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 
-
 @RestController
 @RequestMapping("/user")
 public class UserController {
@@ -32,10 +31,10 @@ public class UserController {
     public List<UserEntity> getuser() {
         return userService.getdata();
     }
-    @GetMapping("/welcome")
-    public String display(){
-        return "Welcome to Springboot";
-    }
+    // @GetMapping("/welcome")
+    // public String display(){
+    //     return "Welcome to Springboot";
+    // }
     @PostMapping("/path")
     public UserEntity postuser(@RequestBody UserEntity entity) {
         if (userService.isUserExists(entity)) {
@@ -58,6 +57,7 @@ public class UserController {
 
 
 
+    
 
 
     //sorting

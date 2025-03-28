@@ -17,27 +17,29 @@ import demo.hello.Repository.UserRepository;
 public class UserService {
     @Autowired
     UserRepository userRepository;
-
+//get
     public List<UserEntity> getdata() {
         return userRepository.findAll();
     }
 
-    
+//post
     public UserEntity postdata(@RequestBody UserEntity entity) {
         return userRepository.save(entity);
     }
 
-   
+//put 
     public UserEntity putdata(Long id,UserEntity entity) {
        entity.setId(id);
        return userRepository.save(entity);
     }
 
-    
+//delete 
     public String deletedata( Long id){
         userRepository.deleteById(id);
         return "success";
     }
+
+
 
 
 
@@ -53,10 +55,6 @@ public List<UserEntity> findByName(String name)
     return userRepository.findByName(name);
 }
   
-
-
-
-
 
 //Pagination
     public Page<UserEntity> getpageEmployee(int page,int size)

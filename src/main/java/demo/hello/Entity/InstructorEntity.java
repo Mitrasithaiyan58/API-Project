@@ -1,5 +1,6 @@
 
 package demo.hello.Entity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,8 @@ public class InstructorEntity {
     private String experience;
     private String availability;
    private String specialization;
+
+
     
    
 

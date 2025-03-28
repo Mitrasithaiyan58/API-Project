@@ -25,8 +25,8 @@ public class RecipeService {
     }
 
     
-    public  RecipeEntity postdata(@RequestBody RecipeEntity entity) {
-        return recipeRepository.save(entity);
+    public  List<RecipeEntity> postdata(@RequestBody List<RecipeEntity> entity) {
+        return recipeRepository.saveAll(entity);
     }
 
    

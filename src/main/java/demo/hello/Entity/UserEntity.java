@@ -1,13 +1,21 @@
 package demo.hello.Entity;
+
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+
+
 
 @Entity
 public class UserEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    // @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String name;
     private String password;
@@ -15,6 +23,18 @@ public class UserEntity {
     private String phone;
    
 
+    
+ @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinTable(
+        name = "user_recipe",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "recipe_id")
+    )
+    private Set<RecipeEntity> savedRecipes ;
+
+
+
+    
 
     public UserEntity(long id, String name, String password,String email,String phone) {
         this.id = id;
@@ -42,11 +62,15 @@ public class UserEntity {
     public void setpassword(String password) {
         this.password = password;
     }
+    
     public String getEmail() {
         return email;
     }
     public void setEmail(String email) {
         this.email = email;
+    }
+    public String getPhone() {
+        return phone;
     }
     public void setPhone(String phone) {
         this.phone = phone;
@@ -56,7 +80,5 @@ public class UserEntity {
         
     }
 
-    public String getPhone() {
-        return phone;
-    }
+    
 }

@@ -1,22 +1,42 @@
 
 package demo.hello.Entity;
+// import java.util.Set;
+
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
+
+// import java.util.HashSet;
+// import java.util.Set;
+
+// import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+
+//  import jakarta.persistence.ManyToMany;
+
+
 
 @Entity
 public class RecipeEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    // @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String name;
     private String ingredients;
     private String description;
     private String cookingtime;
     private String instructions;
-
+    
    
+
+    
+  
+
+    @ManyToMany(mappedBy = "savedRecipes",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    private Set<UserEntity> users;
 
 
     public RecipeEntity(long id, String name, String ingredients,String description,String cookingtime,String instructions) {
@@ -64,6 +84,11 @@ public class RecipeEntity {
     public void setinstructions(String instructions) {
         this.instructions= instructions;
     }
+
+
+
+    
+     
 
 
 

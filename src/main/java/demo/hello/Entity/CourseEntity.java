@@ -1,27 +1,28 @@
 
 package demo.hello.Entity;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class CourseEntity {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    // @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
     private String coursename;
     private String cuisinetype;
     private String level;
     private String duration;
-    private String instructor;
+  
     private String startdate;
     private String enddate;
     private String price;
    
 
 
-    public CourseEntity(long id, String coursename, String cuisinetype,String level,String duration,String instructor,String startdate,String enddate,String price) {
+    public CourseEntity(long id, String coursename, String cuisinetype,String level,String duration,InstructorEntity instructor,String startdate,String enddate,String price) {
         this.id = id;
         this.coursename = coursename;
         this.cuisinetype = cuisinetype;
@@ -32,6 +33,17 @@ public class CourseEntity {
         this.enddate= enddate;
         this.price = price;
     }
+
+
+
+      // Many Courses belong to One Instructor
+    @ManyToOne
+    @JoinColumn(name = "instructor_id", nullable = false)
+    private InstructorEntity instructor;
+
+    
+
+
 
     public long getId() {
         return id;
@@ -63,10 +75,11 @@ public class CourseEntity {
     public void setduration(String duration) {
         this.duration = duration;
     }
-    public String getinstructor() {
+    
+    public InstructorEntity getInstructor() {
         return instructor;
     }
-    public void setinstructor(String instructor) {
+    public void setInstructor(InstructorEntity instructor) {
         this.instructor = instructor;
     }
     public String getstartdate() {

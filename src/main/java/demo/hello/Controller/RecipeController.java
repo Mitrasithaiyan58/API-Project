@@ -8,12 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.RestController;
+
+
 import demo.hello.Entity.RecipeEntity; // Change the package as per your project structure
 
 import demo.hello.Service.RecipeService; // Change the package as per your project structure
-
-
-
 
 
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,7 +42,7 @@ public class RecipeController {
         return "Welcome to Springboot";
     }
     @PostMapping("/path")
-    public RecipeEntity postuser(@RequestBody RecipeEntity entity) {
+    public List<RecipeEntity> postuser(@RequestBody List<RecipeEntity> entity) {
         return recipeService.postdata(entity);
     }
 
@@ -57,8 +56,6 @@ public class RecipeController {
          recipeService.deletedata(id);
          return "success";
     }
-
-
 
 
 
@@ -92,7 +89,6 @@ public class RecipeController {
       public List<String>findByCookingtime(@PathVariable String cookingtime) {
           return recipeService.findByCookingtime(cookingtime);
       }
-  
-    
+
     
 }
